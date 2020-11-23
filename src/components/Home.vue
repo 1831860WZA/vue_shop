@@ -22,14 +22,12 @@
           :collapse="isCollapse"
           :collapse-transition="false"
           :router="true"
-          :default-active="activePath"
-        >
+          :default-active="activePath">
           <!-- 一级菜单 -->
           <el-submenu
             :index="item.id + ''"
             v-for="item in menulist"
-            :key="item.id"
-          >
+            :key="item.id">
             <!-- 一级菜单的模板区域 -->
             <template slot="title">
               <!-- 图标 -->
@@ -43,8 +41,7 @@
               :index="'/' + subItem.path"
               v-for="subItem in item.children"
               :key="subItem.id"
-              @click="saveNavState('/' + subItem.path)"
-            >
+              @click="saveNavState('/' + subItem.path)">
               <template slot="title">
                 <!-- 图标 -->
                 <i class="el-icon-menu"></i>

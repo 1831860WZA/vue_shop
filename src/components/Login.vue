@@ -11,22 +11,21 @@
         label-width="0px"
         :model="loginForm"
         :rules="loginFormRules"
-        class="login_form"
-      >
+        class="login_form">
         <!-- 用户名 -->
         <el-form-item prop="username">
           <el-input
             v-model="loginForm.username"
-            prefix-icon="iconfont icon-user"
-          ></el-input>
+            prefix-icon="iconfont icon-user">
+        </el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item prop="password">
           <el-input
             v-model="loginForm.password"
             prefix-icon="iconfont icon-3702mima"
-            type="password"
-          ></el-input>
+            type="password">
+          </el-input>
         </el-form-item>
         <!-- 按钮区域 -->
         <el-form-item class="btns">
@@ -39,6 +38,8 @@
 </template>
 
 <script>
+import { showLoading, hideLoading } from '../components/reusable/loading.js'
+
 export default {
   name: 'Login',
   data() {
@@ -63,7 +64,7 @@ export default {
             trigger: 'blur',
           },
         ],
-      },
+      }
     }
   },
   methods: {
@@ -72,21 +73,33 @@ export default {
       this.$refs.loginFormRef.resetFields()
     },
     login() {
+      // 显示加载
+      showLoading();
       this.$refs.loginFormRef.validate(async (valid) => {
-        //   console.log(valid);
-        if (!valid) return
+        // console.log(valid);
+        if (!valid) {
+          // 关闭加载
+          hideLoading();
+        }
         const { data: res } = await this.$http.post('login', this.loginForm)
         // console.log(res);
-        if (res.meta.status !== 200) return this.$message.error('登录失败!')
+        if (res.meta.status !== 200) {
+          // 关闭加载
+          hideLoading();
+          return this.$message.error('登录失败!')
+        }
         this.$message.success('登录成功')
+        // 请求完成时关闭加载
+        hideLoading();
         // 1. 将登录成功之后的 token，保存到客户端的 sessionStorage 中
         //   1.1 项目中出了登录之外的其他API接口，必须在登录之后才能访问
         //   1.2 token 只应在当前网站打开期间生效，所以将 token 保存在 sessionStorage 中
         window.sessionStorage.setItem('token', res.data.token)
         // 2. 通过编程式导航跳转到后台主页，路由地址是 /home
         this.$router.push('/home')
+        
       })
-    },
+    }
   },
 }
 </script>
