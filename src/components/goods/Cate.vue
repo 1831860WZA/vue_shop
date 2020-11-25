@@ -8,49 +8,49 @@
     </el-breadcrumb>
 
      <!-- 卡片视图 -->
-     <el-card>
-         <!-- 添加角色按钮区域 -->
-         <el-row>
-             <el-col>
-                 <el-button type="primary" @click="showAddCateDialog">添加分类</el-button>
-             </el-col>
-         </el-row>
+    <el-card>
+        <!-- 添加角色按钮区域 -->
+        <el-row>
+            <el-col>
+                <el-button type="primary" @click="showAddCateDialog">添加分类</el-button>
+            </el-col>
+        </el-row>
 
-         <!-- 表格 -->
-         <tree-table
-            class="treeTable"
-            :data="catelist" 
-            :columns="columns" 
-            :selection-type="false" 
-            :expand-type="false" 
-            show-index 
-            index-text="#" 
-            :show-row-hover="false">
-            <template slot="isok" slot-scope="scope">
-                <i class="el-icon-success" v-if="scope.row.cat_deleted === false" style="color: lightgreen"></i>
-                <i class="el-icon-error" v-else style="color: red"></i>
-            </template>
-            <template slot="order" slot-scope="scope">
-                <el-tag v-if="scope.row.cat_level === 0" size="mini">一级</el-tag>
-                <el-tag v-else-if="scope.row.cat_level === 1" type="success" size="mini">二级</el-tag>
-                <el-tag v-else type="warning" size='mini'>三级</el-tag>
-            </template>
-            <template slot="opt" slot-scope="scope">
-                <el-button type="primary" icon="el-icon-edit" size="mini">编辑</el-button>
-                <el-button type="danger" icon="el-icon-delete" size="mini">删除</el-button>
-            </template>
-         </tree-table>
+        <!-- 表格 -->
+        <tree-table
+           class="treeTable"
+           :data="catelist" 
+           :columns="columns" 
+           :selection-type="false" 
+           :expand-type="false" 
+           show-index 
+           index-text="#" 
+           :show-row-hover="false">
+           <template slot="isok" slot-scope="scope">
+               <i class="el-icon-success" v-if="scope.row.cat_deleted === false" style="color: lightgreen"></i>
+               <i class="el-icon-error" v-else style="color: red"></i>
+           </template>
+           <template slot="order" slot-scope="scope">
+               <el-tag v-if="scope.row.cat_level === 0" size="mini">一级</el-tag>
+               <el-tag v-else-if="scope.row.cat_level === 1" type="success" size="mini">二级</el-tag>
+               <el-tag v-else type="warning" size='mini'>三级</el-tag>
+           </template>
+           <template slot="opt" slot-scope="scope">
+               <el-button type="primary" icon="el-icon-edit" size="mini">编辑</el-button>
+               <el-button type="danger" icon="el-icon-delete" size="mini">删除</el-button>
+           </template>
+        </tree-table>
 
-         <!-- 分页区域 -->
-         <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="queryinfo.pagenum"
-            :page-sizes="[3, 5, 10, 15]"
-            :page-size="queryinfo.pagesize"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="total">
-         </el-pagination>
+        <!-- 分页区域 -->
+        <el-pagination
+           @size-change="handleSizeChange"
+           @current-change="handleCurrentChange"
+           :current-page="queryinfo.pagenum"
+           :page-sizes="[3, 5, 10, 15]"
+           :page-size="queryinfo.pagesize"
+           layout="total, sizes, prev, pager, next, jumper"
+           :total="total">
+        </el-pagination>
     </el-card>
 
     <!-- 添加分类的对话框 -->
