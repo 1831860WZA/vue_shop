@@ -11,6 +11,10 @@ html, body, #app {
     font-size: 12px;
 }
 
+.el-pagination {
+    margin-top: 10px;
+}
+
 .el-card {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15)!important;
 }
@@ -18,4 +22,17 @@ html, body, #app {
 .el-table {
     margin-top: 15px;
     font-size: 12px;
+}
+
+.el-steps {
+    margin: 15px 0;
+}
+
+.el-step__title {
+    font-size: 13px!important;
+}
+
+/* 富文本编辑框的高度 */
+.ql-container {
+    min-height: 300px!important;
 }
