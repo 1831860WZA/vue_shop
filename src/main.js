@@ -12,6 +12,7 @@ import axios from 'axios'
 
 import TreeTable from 'vue-table-with-tree-grid'
 
+// require styles 导入富文本编辑器对应的样式
 import 'quill/dist/quill.core.css' // import styles
 import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
